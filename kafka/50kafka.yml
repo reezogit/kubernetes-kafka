@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: kafka
   serviceName: "broker"
-  replicas: 3
+  replicas: 4
   updateStrategy:
     type: OnDelete
   template:
@@ -65,7 +65,12 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 512Mi
+            memory: 100Mi
+          limits:
+            # This limit was intentionally set low as a reminder that
+            # the entire Yolean/kubernetes-kafka is meant to be tweaked
+            # before you run production workloads
+            memory: 14Gi
         readinessProbe:
           tcpSocket:
             port: 9092
@@ -89,4 +94,4 @@ spec:
       storageClassName: kafka-broker
       resources:
         requests:
-          storage: 200Gi
+          storage: 128Gi
