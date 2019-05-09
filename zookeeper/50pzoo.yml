@@ -82,4 +82,4 @@ spec:
       storageClassName: kafka-zookeeper
       resources:
         requests:
-          storage: 1Gi
+          storage: 10Gi
